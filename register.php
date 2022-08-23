@@ -1,8 +1,9 @@
  <?php
  // allow config
-define('__CONFIG__',true); 
+	define('__CONFIG__',true); 
 // require the config
-  require_once "inc/config.php"; ?> 
+	require_once "inc/config.php"; ?> 
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -37,7 +38,12 @@ define('__CONFIG__',true);
 			            <input class="uk-input" id="form-stacked-text" type="password" required='required' 
 			            placeholder="Your Password">
 			        </div>
-			    </div>
+			    </div> 
+			    <!-- set up alert box -->
+	<div class="uk-margin uk-alert uk-alert-danger js-error" style='display: none';>
+	<!-- test -->
+	</div> 
+
 
 			    <div class="uk-margin">
 			        <button class="uk-button uk-button-default" type="submit">Register</button>

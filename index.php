@@ -2,7 +2,9 @@
  // allow config
 define('__CONFIG__',true); 
 // require the config
-  require_once "inc/config.php"; ?> 
+  require_once "inc/config.php"; 
+  
+  ?> 
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -22,6 +24,8 @@ define('__CONFIG__',true);
   	<div class="uk-section uk-container">
   	<?php echo "Hello World. Today is: ";
   	echo date("Y m d");
+  	echo "<br>" . "current directory is: ";
+  	echo  "<br>" . __DIR__ . "<br>";
  
  ?>
  <p>

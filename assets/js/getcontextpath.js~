@@ -1,0 +1,12 @@
+/**
+ * returns the current context path,
+ * ex: http://localhost:8080/MyApp/Controller returns /MyApp/
+ * ex: http://localhost:8080/MyApp returns /MyApp/
+ * ex: https://www.example.co.za/ returns /
+ */
+function getContextPath() {
+	console.log("Path of window location: ", window.location.pathname)
+    var ctx = window.location.pathname,
+        path = '/' !== ctx ? ctx.substring(0, ctx.indexOf('/', 1) + 1) : ctx;
+    return path + (/\/$/.test(path) ? '' : '/');
+}
