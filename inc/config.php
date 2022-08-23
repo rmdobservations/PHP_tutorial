@@ -4,5 +4,13 @@
 if(!defined('__CONFIG__')){
 exit('You do not have a config file');
 }	
-
+// our config is below
+// allow errors
+error_reporting(-1);
+ini_set('display_errors','On');
+// inculde DB file
+include_once "classes/DB.php";
+include_once "classes/Filter.php";
+// public so can be called from here.
+$con = DB::getConnection();
 ?>
