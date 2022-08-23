@@ -64,8 +64,9 @@ async: true,
 
 ////////////////////////////
 
-.on("submit","form.js-loginb",function(event)
+.on("submit","form.js-login",function(event)
 {
+	console.log("do you see this, when login clicked");
 	event.preventDefault();
 	var _form = $(this);
 	_error =$(".js-error",_form);
@@ -99,7 +100,7 @@ console.log("Url for ajax php is: ",relativePath)
 console.log("command is: ",relativePath + 'ajax/login.php')
 $.ajax({
 type: 'POST',
-url: relativePath + 'ajax/register.php',
+url: relativePath + 'ajax/login.php',
 data: dataObj,
 dataType: 'json',
 async: true,	
@@ -114,7 +115,10 @@ async: true,
 		console.log("redirect user",data.myname);
 		
 		} else if (data.error !== undefined){
-		_error.text(data.error).show();	
+// show error as html (ask if want to register)
+		_error
+		.html(data.error)
+		.show();	
 		}	
 	})
 	.fail(function ajaxFailed(e) {

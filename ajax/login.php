@@ -16,36 +16,41 @@ define('__CONFIG__',true);
 // make sure that user does not exist
 // "user_id" is a column in table "users" in database "php_tutorial"
 // lower changes all letters to lower case.
+
 $email=Filter::String($_POST['email']);
+$password = $_POST['password'];
 
 $findUser = 
 	$con->
-	prepare("SELECT user_id FROM users WHERE email = LOWER(:email) LIMIT 1");
+	prepare("SELECT user_id,password FROM users WHERE email = LOWER(:email) LIMIT 1");
 // colon before the email is used in the bind
 $findUser->	bindParam(':email',$email,PDO::PARAM_STR);
 
 $findUser->	execute();
 
 if($findUser ->rowCount() == 1){
-	// user exists
-// check if they are able to log in
-$myreturn['error']='You already have an account';
-$myreturn['is_logged_in']=false;
+	// sign in user if they exist
+	$User = $findUser->fetch(PDO::FETCH_ASSOC);
+	$user_id['user_id'] = (int) $User['user_id'];
+	// how to validate user, what db thinks is password
+	$passwordhash= $User['password'];
+	
+if(password_verify($password,$passwordhash)){
+// user is signed in
+$myreturn['redirect']='/dashboard.php';
+$_SESSION['user_id']=$user_id;  // session is an integer, not string
 } else {
-// user does not exist, add them now
-// PHP creates a hash for password
-$password=password_hash($_POST['password'],PASSWORD_DEFAULT);
+// invalid user email/password combo
+$myreturn['error']= "Invalid User email/password combination ";
+}
 
-
-$addUser=$con->prepare("INSERT INTO users(email,password) VALUES(:email,:password)");
-$addUser->bindParam(':email',$email,PDO::PARAM_STR);
-$addUser->bindParam(':password',$password,PDO::PARAM_STR);
-$addUser->execute();
-$user_id=$con->lastInsertId();
-// sign user in , make sure it is an integer and not string
-$_SESSION['user_id']=(int)$user_id;
-$myreturn['redirect']='index.php?message=welcome';
-$myreturn['is_logged_in']=true;
+// check if they are able to log in
+//$myreturn['error']='You already have an account';
+//$myreturn['is_logged_in']=false;
+} else {
+	
+$myreturn['error']="You do not have an account."; // <a href='/register.php'>
+//Create one now?</a>";
 }
 
 
@@ -59,7 +64,7 @@ $myreturn['is_logged_in']=true;
 //echo "current path : " . __DIR__;
 // where to move when done.
 // redirect is above after user registering
- $myreturn['redirect']= 'dashboard.php?this-was-a-redirect';
+$myreturn['redirect']= 'dashboard.php?this-was-a-redirect';
 //$myreturn['redirect']= 'index.php?this-was-a-redirect';
 //$myreturn['myname']= "rose";
 
