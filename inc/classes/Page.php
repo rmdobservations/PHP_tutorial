@@ -1,7 +1,13 @@
 <?php
+// If there is no constant defined called __CONFIG__, do not load this file 
+if(!defined('__CONFIG__')) {
+	exit('You do not have a config file');
+}
 
+
+class Page {
 // force user to be logged in or redirtected 
-function ForceLogin(){
+static function ForceLogin(){
 if(isset($_SESSION['user_id'])){
 
 
@@ -12,7 +18,7 @@ header("Location: login.php"); // this not working yet. Check in private window
 }
 }
 
-function ForceDashboard(){
+static function ForceDashboard(){
 if(isset($_SESSION['user_id'])){
 	// no slash in front of dashboard. keeps relative path
 header("Location: dashboard.php");
@@ -24,4 +30,5 @@ header("Location: dashboard.php");
 }
 }
 
+} // end class def
 ?>

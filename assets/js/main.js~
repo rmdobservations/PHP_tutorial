@@ -100,7 +100,7 @@ console.log("Url for ajax php is: ",relativePath)
 console.log("command is: ",relativePath + 'ajax/login.php')
 $.ajax({
 type: 'POST',
-url: relativePath + 'ajax/register.php',
+url: relativePath + 'ajax/login.php',
 data: dataObj,
 dataType: 'json',
 async: true,	
@@ -112,7 +112,7 @@ async: true,
 // keep in mind ajax/register.php
 	if(data.redirect !== undefined){
 		window.location=relativePath + data.redirect;
-		console.log("redirect user",data.myname);
+	//	console.log("redirect user",data.myname);
 		
 		} else if (data.error !== undefined){
 // show error as html (ask if want to register)

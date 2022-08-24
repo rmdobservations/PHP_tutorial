@@ -24,7 +24,7 @@ define('__CONFIG__',true);
   	<div class="uk-section uk-container">
   	<?php echo "Hello World. Today is: ";
   	echo date("Y m d");
-  	echo "<br>" . "current directory is: <br>";
+  	echo "<br>" . "current directory is: ";
   	echo  "<br>" . __DIR__ . "<br>";
  
  ?>

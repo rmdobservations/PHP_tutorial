@@ -2,12 +2,15 @@
  // allow config
 define('__CONFIG__',true); 
  require_once "inc/config.php"; 
-//echo 'Session number ' . $_SESSION['user_id'] . 'is your user id';
-//exit;
- ForceLogin();
- // save this for info
- // echo isset($_SESSION['user_id']) ? 'welcome '.implode(" ",$_SESSION['user_id']) :  'aaaaaaaa';
 
+ ForceLogin();
+ // this works because we have gotten past forcelogin
+
+ $User= new User((int) $_SESSION['user_id']);
+ 
+
+ 
+ 
  ?> 
 <!DOCTYPE html>
 <html lang="en">
@@ -19,16 +22,23 @@ define('__CONFIG__',true);
 
     <title>Dashboard</title>
 
-    <base href="/" />
+   <!--  <base href="/" /> -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.24/css/uikit.min.css" />
   </head>
 
   <body>
 
   	<div class="uk-section uk-container">
-  		<h4>this is dashboard</h4>
-  		<p>You are signed in as user: <?php echo isset($_SESSION['user_id']) ? .implode(" ",$_SESSION['user_id']) :  'aaaaaaaa';
-?></p>
+  	<h2>Dashboard</h2>
+<p>Hello <?php echo $User->email;?>, 
+	you registered at <?php echo $User->reg_time; ?></p>
+  	
+<p>   	<a href="logout.php">Log out</a>
+</p>
+
+<!--   		<p>You are signed in as user: <?php echo isset($_SESSION['user_id']) ? ' ' . implode(" ",$_SESSION['user_id']) :  'aaaaaaaa';?></p> -->
+
+
   	</div>
  <?php
 

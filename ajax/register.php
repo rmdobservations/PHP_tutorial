@@ -16,17 +16,14 @@ define('__CONFIG__',true);
 // make sure that user does not exist
 // "user_id" is a column in table "users" in database "php_tutorial"
 // lower changes all letters to lower case.
-$email=Filter::String($_POST['email']);
+$email=$_POST['email'];
 
-$findUser = 
-	$con->
-	prepare("SELECT user_id FROM users WHERE email = LOWER(:email) LIMIT 1");
-// colon before the email is used in the bind
-$findUser->	bindParam(':email',$email,PDO::PARAM_STR);
+//$user_found=FindUser($con,$email);
+// static function
+$user_found=User::Find($email);
 
-$findUser->	execute();
 
-if($findUser ->rowCount() == 1){
+if($user_found){
 	// user exists
 // check if they are able to log in
 $myreturn['error']='You already have an account';

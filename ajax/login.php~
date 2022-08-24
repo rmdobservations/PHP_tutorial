@@ -17,28 +17,22 @@ define('__CONFIG__',true);
 // "user_id" is a column in table "users" in database "php_tutorial"
 // lower changes all letters to lower case.
 
-$email=Filter::String($_POST['email']);
+$email=$_POST['email'];
 $password = $_POST['password'];
 
-$findUser = 
-	$con->
-	prepare("SELECT user_id,password FROM users WHERE email = LOWER(:email) LIMIT 1");
-// colon before the email is used in the bind
-$findUser->	bindParam(':email',$email,PDO::PARAM_STR);
 
-$findUser->	execute();
-
-if($findUser ->rowCount() == 1){
-	
+//$user_found=FindUser($con,$email,true);
+$user_found=User::Find($con,$email,true);
+if($user_found){
 	// sign in user if they exist
-	$User = $findUser->fetch(PDO::FETCH_ASSOC);
-	$user_id['user_id'] = (int) $User['user_id'];
+	//$User = $user_found; //->fetch(PDO::FETCH_ASSOC);
+	$user_id['user_id'] = (int) $user_found['user_id'];
 	// how to validate user, what db thinks is password
-	$passwordhash= $User['password'];
+	$passwordhash= $user_found['password'];
 	
 if(password_verify($password,$passwordhash)){
 // user is signed in
-$myreturn['redirect']='/dashboard.php';
+$myreturn['redirect']='dashboard.php';
 $_SESSION['user_id']=$user_id;  // session is an integer, not string
 } else {
 // invalid user email/password combo
@@ -46,12 +40,13 @@ $myreturn['error']= "Invalid User email/password combination ";
 }
 
 // check if they are able to log in
-//$myreturn['error']='You already have an account';
+
 //$myreturn['is_logged_in']=false;
 } else {
 	
-$myreturn['error']="You do not have an account."; // <a href='/register.php'>
-//Create one now?</a>";
+$myreturn['error']="You do not have an account. <a href='register.php'>
+Create one now?</a>";
+
 }
 
 

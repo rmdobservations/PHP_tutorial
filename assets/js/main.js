@@ -112,7 +112,7 @@ async: true,
 // keep in mind ajax/register.php
 	if(data.redirect !== undefined){
 		window.location=relativePath + data.redirect;
-		console.log("redirect user",data.myname);
+		console.log("redirect user");
 		
 		} else if (data.error !== undefined){
 // show error as html (ask if want to register)
