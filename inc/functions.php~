@@ -14,7 +14,7 @@ header("Location: login.php"); // this not working yet. Check in private window
 
 function ForceDashboard(){
 if(isset($_SESSION['user_id'])){
-	// no slash in front of dashboard. keeps relative path
+	
 header("Location: dashboard.php");
 
 } else {

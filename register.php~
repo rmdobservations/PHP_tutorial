@@ -41,7 +41,7 @@
 			    </div> 
 			    <!-- set up alert box -->
 	<div class="uk-margin uk-alert uk-alert-danger js-error" style='display: none';>
-	test
+	<!-- test -->
 	</div> 
 
 

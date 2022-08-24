@@ -1,12 +1,6 @@
  <?php
  // allow config
 define('__CONFIG__',true); 
-echo $_SESSION['user_id'] . 'is your user id';
-//
-//  echo isset($_SESSION['user_id']) ? 'welcome '.implode(" ",$_SESSION['user_id']
-//) :  'aaaaaaaa';
-  exit;
-  ?> 
 // require the config
   require_once "inc/config.php"; ?> 
 <!DOCTYPE html>

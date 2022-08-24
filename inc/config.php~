@@ -4,6 +4,11 @@
 if(!defined('__CONFIG__')){
 exit('You do not have a config file');
 }	
+// sessions are always turned on, see ajax/login.php
+if(!isset($_SESSION)) {
+session_start();
+}
+
 // our config is below
 // allow errors
 error_reporting(-1);
