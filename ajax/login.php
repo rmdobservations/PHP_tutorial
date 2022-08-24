@@ -29,6 +29,7 @@ $findUser->	bindParam(':email',$email,PDO::PARAM_STR);
 $findUser->	execute();
 
 if($findUser ->rowCount() == 1){
+	
 	// sign in user if they exist
 	$User = $findUser->fetch(PDO::FETCH_ASSOC);
 	$user_id['user_id'] = (int) $User['user_id'];
@@ -45,12 +46,13 @@ $myreturn['error']= "Invalid User email/password combination ";
 }
 
 // check if they are able to log in
-//$myreturn['error']='You already have an account';
+
 //$myreturn['is_logged_in']=false;
 } else {
 	
-$myreturn['error']="You do not have an account."; // <a href='/register.php'>
-//Create one now?</a>";
+$myreturn['error']="You do not have an account. <a href='/register.php'>
+Create one now?</a>";
+
 }
 
 

@@ -29,6 +29,7 @@ $findUser->	bindParam(':email',$email,PDO::PARAM_STR);
 $findUser->	execute();
 
 if($findUser ->rowCount() == 1){
+	
 	// sign in user if they exist
 	$User = $findUser->fetch(PDO::FETCH_ASSOC);
 	$user_id['user_id'] = (int) $User['user_id'];
@@ -37,7 +38,7 @@ if($findUser ->rowCount() == 1){
 	
 if(password_verify($password,$passwordhash)){
 // user is signed in
-$myreturn['redirect']='/index.php';
+$myreturn['redirect']='/dashboard.php';
 $_SESSION['user_id']=$user_id;  // session is an integer, not string
 } else {
 // invalid user email/password combo

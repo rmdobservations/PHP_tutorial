@@ -1,11 +1,14 @@
  <?php
  // allow config
 define('__CONFIG__',true); 
-// require the config
-  require_once "inc/config.php"; 
+ require_once "inc/config.php"; 
+//echo 'Session number ' . $_SESSION['user_id'] . 'is your user id';
+//exit;
+
+
   echo isset($_SESSION['user_id']) ? 'welcome '.implode(" ",$_SESSION['user_id']) :  'aaaaaaaa';
-  exit;
-  ?> 
+// require the config
+ ?> 
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -23,18 +26,11 @@ define('__CONFIG__',true);
   <body>
 
   	<div class="uk-section uk-container">
- <!--  	<?php echo "Hello World. Today is: ";
-  	echo date("Y m d");
-  	echo "<br>" . "current directory is: ";
-  	echo  "<br>" . __DIR__ . "<br>";
- 
- ?>
- <p>
- <a href="projects/PHP_tutorial/register.php">Regster</a> 
-<a href="projects/PHP_tutorial/login.php">Login</a> 
- </p> -->
- 	</div>
-  <?php require_once "inc/footer.php"; ?> 
+  		
+  	</div>
+ <?php
+
+  require_once "inc/footer.php"; ?> 
   
   </body>
 </html>
